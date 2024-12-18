@@ -5,7 +5,7 @@ const ProtectedRoute = () => {
     const {user} = useContext(AuthContext);
   return (
     //replace remove previous history back button won't work
-    user ? <Outlet/> : <Navigate to={'/'} replace/>
+    user ? <Outlet/> : <Navigate to={'/login'} replace/>
   )
 }
 
