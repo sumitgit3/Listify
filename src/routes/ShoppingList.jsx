@@ -16,6 +16,7 @@ const ShoppingListPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
   const [isCalculatorVisible, setIsCalculatorVisible] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const togglePurchased = async (id, purchased) => {
     await updateItem({
@@ -64,6 +65,11 @@ const ShoppingListPage = () => {
   if (loading) return <Spinner />;
   if (error) return <ErrorMessage message={error.message} />;
 
+  // Filter items by category
+  const filteredItems = items.filter((item) =>
+    item.category.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-300 via-purple-200 to-pink-300 p-6">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
@@ -79,21 +85,40 @@ const ShoppingListPage = () => {
           </button>
         </div>
         <AddItemForm />
-        <div className="space-y-4">
-          {items.map((item) => (
-            <Item
-              key={item.id}
-              name={item.name}
-              quantity={item.quantity}
-              category={item.category}
-              purchased={item.purchased}
-              onTogglePurchased={() => togglePurchased(item.id, item.purchased)}
-              onDelete={() => deleteItemHandler(item.id)}
-              onEdit={() => openEditModal(item)}
-            />
-          ))}
+
+        {/* Filter Section */}
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Filter by category..."
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="w-full border border-purple-400 rounded-lg p-2 text-purple-700 focus:outline-none focus:ring focus:ring-purple-300"
+          />
         </div>
-        
+
+        {/* Filtered Items */}
+        <div className="space-y-4">
+          {filteredItems.length > 0 ? (
+            filteredItems.map((item) => (
+              <Item
+                key={item.id}
+                name={item.name}
+                quantity={item.quantity}
+                category={item.category}
+                purchased={item.purchased}
+                onTogglePurchased={() => togglePurchased(item.id, item.purchased)}
+                onDelete={() => deleteItemHandler(item.id)}
+                onEdit={() => openEditModal(item)}
+              />
+            ))
+          ) : (
+            <p className="text-center text-purple-700 font-medium">
+              No items match this category.
+            </p>
+          )}
+        </div>
+
         {/* Edit Modal */}
         {modalOpen && currentItem && (
           <EditModal
