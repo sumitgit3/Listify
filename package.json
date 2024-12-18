@@ -2,6 +2,7 @@
   "name": "shopping-list",
   "private": false,
   "version": "0.0.0",
+  "author": "sumitgit3",
   "type": "module",
   "scripts": {
     "dev": "vite",
