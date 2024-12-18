@@ -41,7 +41,7 @@ const Login = () => {
               htmlFor="username"
               className="text-sm font-medium text-gray-700"
             >
-              Email
+              Username
             </label>
             <input
               type="text"

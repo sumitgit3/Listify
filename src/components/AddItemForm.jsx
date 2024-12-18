@@ -52,6 +52,7 @@ const AddItemForm = () => {
             type="number"
             id="quantity"
             name="quantity"
+            min={1}
             value={newItem.quantity}
             onChange={handleInputChange}
             placeholder="E.g., 5"
