@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import  {AuthContext}  from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,13 +10,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
 
-  const { user, signIn, authError } = useContext(AuthContext);
+  const { user, signIn } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     // form validation
     if (!email || !password || !username) {
-      alert("Please enter all the fields.");
+      toast.warn("Please enter all the fields.");
       return;
     }
     //signIn mutation
@@ -27,10 +28,7 @@ const Login = () => {
     if (user) {
       navigate("/mylist");
     }
-    else if(authError) {
-      alert(authError);
-    }
-  }, [user,authError]);
+  }, [user]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">

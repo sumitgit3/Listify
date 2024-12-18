@@ -1,6 +1,7 @@
 import React, { useState,useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [username,setUsername] = useState("");
@@ -9,19 +10,19 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const {user,authError,signUp} = useContext(AuthContext);
+  const {user,signUp} = useContext(AuthContext);
 
   const handleSignUp = async(e) => {
     e.preventDefault();
 
     // Simple validation to check if passwords match
     if (!email || !password || !confirmPassword) {
-      alert("Please fill in all fields.");
+      toast.warn("Please fill in all fields.");
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match.");
+      toast.warn("Passwords do not match.");
       return;
     }
 
@@ -32,10 +33,7 @@ const SignUp = () => {
     if (user) {
       navigate("/mylist");
     }
-    else if(authError) {
-      alert(authError);
-    }
-  },[user,authError]);
+  },[user]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">

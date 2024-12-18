@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 
 // GraphQL Queries for Authentication
 const SIGN_IN = gql`
@@ -18,17 +19,15 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [authError, setAuthError] = useState(null); // To track authentication errors
 
   // Sign-In Mutation
   const [signInMutation] = useMutation(SIGN_IN, {
     onCompleted: (data) => {
       localStorage.setItem("token", data.signIn);
       setUser({ token: data.signIn });
-      setAuthError(null); // Clear errors on success
     },
     onError: (error) => {
-      setAuthError(error.message); // Capture the error
+      toast.error(error.message);
     },
   });
 
@@ -37,10 +36,9 @@ export const AuthProvider = ({ children }) => {
     onCompleted: (data) => {
       localStorage.setItem("token", data.signUp);
       setUser({ token: data.signUp });
-      setAuthError(null); // Clear errors on success
     },
     onError: (error) => {
-      setAuthError(error.message); // Capture the error
+      toast.error(error.message);
     },
   });
 
@@ -69,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signUp, logout, authError }}>
+    <AuthContext.Provider value={{ user, signIn, signUp, logout}}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,5 +1,6 @@
 import React, { useState,useContext } from "react";
 import { ItemContext } from "../Context/ItemContext";
+import { toast } from "react-toastify";
 
 const AddItemForm = () => {
 
@@ -22,7 +23,7 @@ const AddItemForm = () => {
       await addItem(newItem);
       setNewItem({ name: "", quantity: "", category: "" });
     } else {
-      alert("Please fill out all fields before adding an item.");
+      toast.warn("Please fill out all fields before adding an item.");
     }
   };
 

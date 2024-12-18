@@ -1,6 +1,6 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect} from "react";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import { AuthContext } from "./AuthContext";
+import { toast } from "react-toastify";
 
 // GraphQL Queries and Mutations
 const GET_ITEMS = gql`
@@ -61,19 +61,11 @@ const DELETE_ITEM = gql`
 const ItemContext = createContext();
 
 const ItemProvider = ({ children }) => {
-  const { user } = useContext(AuthContext);
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null); // Error state to track any issues
 
   // Fetch items with useQuery
-  const { data, loading, refetch, error: queryError } = useQuery(GET_ITEMS);
+  const { data, loading, refetch, error } = useQuery(GET_ITEMS);
 
-  // Update error state for query errors
-  useEffect(() => {
-    if (queryError) {
-      setError(queryError.message);
-    }
-  }, [queryError]);
 
   // Update local state when data changes
   useEffect(() => {
@@ -86,11 +78,10 @@ const ItemProvider = ({ children }) => {
   const [addItemMutation] = useMutation(ADD_ITEM, {
     onCompleted: () => {
       refetch(); // Automatically refetch items to sync state with backend
-      setError(null); // Clear error on success
+      toast.success("Item added");
     },
     onError: (err) => {
-      console.error("Error adding item:", err);
-      setError(err.message);
+      toast.error(`Error adding item: ${err.message}`);
     },
   });
 
@@ -98,11 +89,10 @@ const ItemProvider = ({ children }) => {
   const [updateItemMutation] = useMutation(UPDATE_ITEM, {
     onCompleted: () => {
       refetch(); // Automatically refetch items to sync state with backend
-      setError(null); // Clear error on success
+      toast.success("Item updated");
     },
     onError: (err) => {
-      console.error("Error updating item:", err);
-      setError(err.message);
+      toast.error(`Error updating item:${err.message}`);
     },
   });
 
@@ -110,11 +100,10 @@ const ItemProvider = ({ children }) => {
   const [deleteItemMutation] = useMutation(DELETE_ITEM, {
     onCompleted: () => {
       refetch(); // Automatically refetch items to sync state with backend
-      setError(null); // Clear error on success
+      toast.success("Item removed");
     },
     onError: (err) => {
-      console.error("Error deleting item:", err);
-      setError(err.message);
+      toast.error(`Error deleting item:${err.message}`);
     },
   });
 
