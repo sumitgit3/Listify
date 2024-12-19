@@ -23,10 +23,10 @@ const Home = () => {
           Welcome to <span className="text-pink-600">LiSTiFY!</span>
         </h1>
         <p className="mt-4 text-lg text-purple-800">Your partner for organizing shopping lists and more!</p>
-        
+
         {/* 'Get Started' button triggers the redirect */}
-        <button 
-          onClick={handleGetStarted} 
+        <button
+          onClick={handleGetStarted}
           className="mt-6 bg-purple-600 text-white px-6 py-3 rounded-full text-lg font-bold shadow-lg hover:bg-pink-500 hover:shadow-xl"
         >
           Get Started
@@ -43,8 +43,8 @@ const Home = () => {
               <p>Plan your spending effortlessly and stay stress-free!</p>
             </div>
             <div className="p-6 bg-purple-200 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-purple-900 mb-2">Share Easily</h3>
-              <p>Share your lists with family and friends instantly.</p>
+              <h3 className="text-xl font-bold text-purple-900 mb-2">Access Anywhere</h3>
+              <p>Access your lists from any device, anytime.</p>
             </div>
             <div className="p-6 bg-blue-200 rounded-lg shadow-md">
               <h3 className="text-xl font-bold text-purple-900 mb-2">Stay Organized</h3>
