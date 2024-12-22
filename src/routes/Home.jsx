@@ -16,7 +16,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col max-h-screen bg-gradient-to-b from-pink-300 via-purple-300 to-blue-300">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-pink-300 via-purple-300 to-blue-300">
       {/* Hero Section */}
       <header className="flex flex-col md:flex-row items-center justify-between py-20 px-6 md:px-16 text-center md:text-left">
         {/* Text Content */}
@@ -64,13 +64,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-purple-900 text-white py-6 mt-auto">
-        <div className="max-w-7xl mx-auto h-3 px-6 text-center">
-          <p>&copy; 2024 LiSTiFY. Making your shopping joyful!</p>
-        </div>
-      </footer>
     </div>
   );
 };

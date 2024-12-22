@@ -3,6 +3,7 @@ import About from "./routes/About";
 import Home from "./routes/Home";
 import ShoppingList from "./routes/ShoppingList";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import SignUp from './routes/SignUp'
 import Login from './routes/Login'
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/mylist" element={<ShoppingList />}></Route>
           </Route>
         </Routes>
+        <Footer/>
       </BrowserRouter>
       <ToastContainer />
     </>

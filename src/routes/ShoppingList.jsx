@@ -65,7 +65,8 @@ const ShoppingListPage = () => {
   if (loading) return <Spinner />;
   if (error) return <ErrorMessage message={error.message} />;
 
-  // Filter items by category
+  // Filter items by category, case-insensitive comparison
+  const categories = [...new Set(items.map((item) => item.category.toLowerCase()))];
   const filteredItems = items.filter((item) =>
     item.category.toLowerCase().includes(filter.toLowerCase())
   );
@@ -86,15 +87,20 @@ const ShoppingListPage = () => {
         </div>
         <AddItemForm />
 
-        {/* Filter Section */}
+        {/* Filter Section with Dropdown */}
         <div className="mb-6">
-          <input
-            type="text"
-            placeholder="Filter by category..."
+          <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className="w-full border border-purple-400 rounded-lg p-2 text-purple-700 focus:outline-none focus:ring focus:ring-purple-300"
-          />
+          >
+            <option value="">Select Category</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Filtered Items */}

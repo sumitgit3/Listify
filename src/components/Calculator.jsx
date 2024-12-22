@@ -22,6 +22,16 @@ const Calculator = ({ onClose }) => {
     setInput("");
   };
 
+  // Remove the last character when "Backspace" button is clicked
+  const backspace = () => {
+    setInput((prevInput) => {
+      if (prevInput === "Error") {
+        return ""; // Clear the input if it is "Error"
+      }
+      return prevInput.slice(0, -1); // Remove the last character
+    });
+  };
+
   return (
     <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-lg shadow-xl max-w-xs w-full z-50">
       {/* Close Button */}
@@ -55,9 +65,12 @@ const Calculator = ({ onClose }) => {
         <button onClick={() => handleButtonClick("*")} className="btn-calculator">*</button>
 
         <button onClick={() => handleButtonClick("0")} className="btn-calculator">0</button>
-        <button onClick={clearInput} className="btn-calculator">C</button>
+        <button onClick={backspace} className="btn-calculator ">⌫</button>
         <button onClick={calculate} className="btn-calculator">=</button>
         <button onClick={() => handleButtonClick("/")} className="btn-calculator">/</button>
+
+        
+        <button onClick={clearInput} className="btn-calculator col-span-3 text-center">C</button>
       </div>
     </div>
   );
