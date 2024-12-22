@@ -3,7 +3,7 @@ import { FaTrash, FaEdit } from "react-icons/fa"; // Import icons for edit and d
 
 const Item = ({ name, quantity, category, purchased, onTogglePurchased, onDelete, onEdit }) => {
   return (
-    <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:shadow-lg">
+    <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:bg-pink-200">
       {/* Item Info */}
       <div>
         <h3 className="text-lg font-bold text-purple-800">{name}</h3>

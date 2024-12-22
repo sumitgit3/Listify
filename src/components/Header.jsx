@@ -34,8 +34,10 @@ const Header = () => {
     <header className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="text-3xl font-extrabold text-purple-700">LiSTiFY</div>
-
+        <Link to={'/'}>
+          <div className="text-3xl font-extrabold text-purple-700">LiSTiFY 🛒</div>
+        </Link>
+        
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
           <button onClick={toggleMobileMenu} className="text-purple-700 text-3xl">
