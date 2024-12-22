@@ -72,7 +72,7 @@ const Header = () => {
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-               className="bg-red-600 text-white px-3 py-1 text-sm rounded-md hover:bg-red-700"
+               className="bg-purple-800 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-900"
             >
               Logout
             </button>
@@ -119,7 +119,7 @@ const Header = () => {
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-               className="bg-red-600 text-white px-3 py-1 text-sm rounded-md hover:bg-red-700"
+               className="bg-purple-800 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-900"
             >
               Logout
             </button>
