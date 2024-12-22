@@ -39,7 +39,7 @@ const Home = () => {
           <img
             src="/rb_758.png" // Replace with your actual image URL
             alt="Welcome Illustration"
-            className="rounded-lg shadow-lg"
+            className="rounded-lg"
           />
         </div>
       </header>
